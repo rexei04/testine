@@ -1,0 +1,28 @@
+<h1>Posts List</h1>
+
+<% if(existedPosts) { %>
+  <p>Existed posts</p>
+  <table>
+  	<tr>
+  		<th>Author</th>
+  		<th>Title</th>
+  		<th>Post</th>
+      <th>Actions</th>
+  	</tr>
+  	<% for(i in posts) { %>
+	  	<tr>
+	  		<td><%=posts[i].author%></td>
+	  	<td><%=posts[i].title%></td>
+	  		<td><%=posts[i].body.toString().substr(0,8)%>...</td>
+        <td>
+          <a href="/editpost/<%=posts[i]._id.toHexString()%>">edit</a>
+          <a href="/deletepost/<%=posts[i]._id.toHexString()%>" onclick="javascript:return confirm('Deseja realmente excluir este registro?');">delete</a>
+        </td>
+	  	</tr>
+  	<% } %>
+  </table>
+<% } else { %>
+  <p>No posts have been posted yet.
+<% }%>
+
+<p>Create a new post? <a href="/newpost">Click here</a>!</p>
